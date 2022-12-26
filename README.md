@@ -18,4 +18,10 @@ Then, set 2 Zabbix API path, such as: https://zabbixaddress2/api_jsonrpc.php or 
 Add 2 Zabbix API username and 2 Zabbix API user password<br>
 Finally, choose timeframes (from and till datetime in the format: 01/01/2000 00:00) for getting SLA info via hosts ICMP ping history or press 'Enter' to set default values (30 days ago from the moment of script running)<br>
 
+Output data:<br>
+Folder: <strong>Excel</strong><br>
+    - <strong>Zabbix_compare.xlsx</strong> <-- Excel report with two sheets<br>
+    - <strong>new.json</strong>            <-- JSON file with information from the first Zabbix server<br>
+    - <strong>old.json</strong>            <-- JSON file with information from the second Zabbix server<br>
+
 Good luck! :)
