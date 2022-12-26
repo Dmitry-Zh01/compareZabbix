@@ -44,12 +44,29 @@ except Exception:
 try:
     zabbixApi.auth
 except Exception:
+    print("Failed to authorize... Try again")
+    
+    # Auth complete (Old)
+try:
+    zabbixApi2 = pyzabbix.ZabbixAPI(apiPathOld)
+except Exception:
+    print("Incorrect API path... Try again")	
+try:
+    zabbixApi2.login(user=apiUsernameOld, password=apiPasswordOld)
+except Exception:
+    print("Incorrect login... Try again")
+try:
+    zabbixApi2.auth
+except Exception:
     print("Failed to authorize... Try again")	
-
+ 
 # Get API name - zabbix server address
 zabbixApiName = apiPathNew.lstrip('https://')
 zabbixApiName = zabbixApiName.rstrip('/zabbix/api_jsonrpc.php')
 
+# Get API name - zabbix server address
+zabbixApiName2 = apiPathOld.lstrip('https://')
+zabbixApiName2 = zabbixApiName2.rstrip('/zabbix/api_jsonrpc.php')
 
 # Frameworks for ICMP ping history getting 
 ## If you will type nothing - these will be marked as default last 30 days history
@@ -95,7 +112,7 @@ if apiPathNew != None:
     itemFilter = {'key_': 'icmpping'}
     itemFilterOS = {'key_': 'system.sw.os'}
    
-    rawHostInfo = zabbixApi.host.get(filter={'host': "Zabbix server"}, output = ['hostid','host','name','status'], \
+    rawHostInfo = zabbixApi.host.get(output = ['hostid','host','name','status'], \
     selectInterfaces=['ip','port','dns', 'type'], selectGroups=['groupid', 'name'], \
     selectParentTemplates=['templateid', 'name'], \
     selectInventory=['alias','chassis','hardware_full','host_netmask','host_networks','macaddress_a','model','name','os_full','serialno_a','type_full'], \
@@ -701,31 +718,13 @@ else:
 
 #### Part II - Zabbix 2 ####
 
-# Auth complete (Old)
-try:
-    zabbixApi2 = pyzabbix.ZabbixAPI(apiPathOld)
-except Exception:
-    print("Incorrect API path... Try again")	
-try:
-    zabbixApi2.login(user=apiUsernameOld, password=apiPasswordOld)
-except Exception:
-    print("Incorrect login... Try again")
-try:
-    zabbixApi2.auth
-except Exception:
-    print("Failed to authorize... Try again")	
-
-# Get API name - zabbix server address
-zabbixApiName2 = apiPathOld.lstrip('https://')
-zabbixApiName2 = zabbixApiName2.rstrip('/zabbix/api_jsonrpc.php')
-
 if apiPathOld != None:
 
 # Preparing JSON data from Zabbix API
     itemFilter = {'key_': 'icmpping'}
     itemFilterOS = {'key_': 'system.sw.os'}
    
-    rawHostInfo = zabbixApi2.host.get(filter={'host': "Zabbix server"}, output = ['hostid','host','name','status'], \
+    rawHostInfo = zabbixApi2.host.get(output = ['hostid','host','name','status'], \
     selectInterfaces=['ip','port','dns', 'type'], selectGroups=['groupid', 'name'], \
     selectParentTemplates=['templateid', 'name'], \
     selectInventory=['alias','chassis','hardware_full','host_netmask','host_networks','macaddress_a','model','name','os_full','serialno_a','type_full'], \
