@@ -1,17 +1,16 @@
-# compareZabbix
-This script allows to automate comparing hosts from two zabbix servers and creation Excel report.
-
 Hello, everyone. This script allows to automate comparing hosts from two zabbix servers and creation Excel report.
+
+<strong>Information:</strong>
 Complete Excel report made using this script should consist of two worksheets: information about all hosts from the first Zabbix Server and information about all hosts from the second Zabbix Server.
 
 ![image](https://user-images.githubusercontent.com/106164393/209563232-42d80409-4582-4991-952f-70ad4382a136.png)
 
-The following are required for proceeding this script:
+<strong>The following are required for proceeding this script:</strong>
 
-python3
-modules: sys os json pyzabbix getpass openpyxl platform subprocess time datetime collections progress
+<strong>python3</strong>
+<strong>modules:</strong> sys os json pyzabbix getpass3 openpyxl platform subprocess time datetime collections progress
 
-How to? To executing the script and get report you should run this and follow promts from python terminal:
+<strong>How to?</strong> To executing the script and get report you should run this and follow promts from python terminal:
 
 Add full 1 Zabbix API path, such as: https://zabbixaddress/api_jsonrpc.php or https://zabbixaddress/zabbix/api_jsonrpc.php
 Type 1 Zabbix API username
